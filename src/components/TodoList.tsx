@@ -19,14 +19,18 @@ function TodoList() {
       {todos.length > 0 && (
         <div className="font-bold text-xl text-stone-500  px-32 w-full flex justify-between align-center">
           <p
-            onClick={() => dispatch({ type: "todos/clear" })}
+            onClick={() => {
+              dispatch({ type: "todos/clear" });
+            }}
             className="transition-all duration-300 border-b-2 border-main hover:border-b-transparent hover:cursor-pointer"
           >
             Clear All
           </p>
           {todos.some((todo) => todo.finished) && (
             <p
-              onClick={() => dispatch({ type: "todos/clearFinished" })}
+              onClick={() => {
+                dispatch({ type: "todos/clearFinished" });
+              }}
               className="transition-all duration-300 border-b-2 border-main hover:border-b-transparent hover:cursor-pointer"
             >
               Clear Completed

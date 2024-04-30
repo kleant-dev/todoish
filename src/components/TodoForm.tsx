@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Todo, useTodos } from "./TodoContext";
 
 function TodoForm() {
-  const [title, setTitle] = useState<string>();
+  const [title, setTitle] = useState<string>("");
   const { dispatch, todos } = useTodos();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -13,12 +13,11 @@ function TodoForm() {
       finished: false,
       id: todos.length + 1,
     };
-
     dispatch({ type: "todos/add", payload: newTodo });
+    setTitle("");
   }
-  console.log(todos);
   return (
-    <div className="w-full flex justify-center align-center">
+    <div className="py-8 w-full flex justify-center align-center">
       <form
         onSubmit={handleSubmit}
         className="my-0 mx-auto w-2/3 flex justify-center py-2"
@@ -26,6 +25,7 @@ function TodoForm() {
         <input
           className="outline-none px-3 py-2 w-2/3  border-[0.5px]  border-main rounded-md  "
           type="text"
+          value={title}
           placeholder="I have to do ..."
           onChange={(e) => setTitle(e.target.value)}
         />

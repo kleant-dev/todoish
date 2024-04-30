@@ -14,11 +14,16 @@ function TodoItem({
     <li className="flex items-center justify-between bg-stone-200 px-3 py-4">
       <input
         type="checkbox"
-        value={finished ? "checked" : "unchecked"}
-        onChange={() => dispatch({ type: "todos/finish", payload: id })}
+        checked={finished}
+        onChange={(e) => {
+          dispatch({ type: "todos/finish", payload: id });
+          console.log(e.target.value);
+        }}
         className="focus:-rotate-[360deg] transition-all duration-500 w-6 h-6 hover:cursor-pointer  accent-main focus:outline-none focus:ring focus:ring-main focus:ring-offset-2"
       />
-      <p className="font-semibold text-stone-700 text-lg">{title}</p>
+      <p className="font-semibold text-stone-700 text-lg overflow-hidden">
+        {title}
+      </p>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -26,7 +31,9 @@ function TodoItem({
         strokeWidth={1.5}
         stroke="currentColor"
         className="w-6 h-6 stroke-main hover:cursor-pointer"
-        onClick={() => dispatch({ type: "todos/delete", payload: id })}
+        onClick={() => {
+          dispatch({ type: "todos/delete", payload: id });
+        }}
       >
         <path
           strokeLinecap="round"

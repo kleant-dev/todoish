@@ -4,8 +4,8 @@ import TodoList from "./components/TodoList";
 
 function App() {
   return (
-    <div className="w-full h-screen bg-bg">
-      <div className="my-0 mx-auto w-2/3 ">
+    <div className="w-full h-screen overflow-scroll bg-bg">
+      <div className="sm:my-0 sm:mx-auto sm:w-full">
         <TodoProvider>
           <TodoForm />
           <TodoList />

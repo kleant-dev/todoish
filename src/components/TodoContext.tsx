@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import { createContext, useContext, useReducer } from "react";
 
 const TodoContext = createContext<
@@ -21,24 +22,35 @@ export type Todo = {
   id: number;
 };
 
-const initialState: Todo[] = [];
+const initialState: Todo[] = JSON.parse(localStorage.getItem("todos") || "[]");
 
 function reducer(state: Todo[], action: Action): Todo[] {
+  let nextState: Todo[];
   switch (action.type) {
     case "todos/add":
-      return [...state, action.payload];
+      nextState = [...state, action.payload];
+      localStorage.setItem("todos", JSON.stringify(nextState));
+      return nextState;
     case "todos/delete":
-      return state.filter((todo) => todo.id !== action.payload);
+      nextState = state.filter((todo) => todo.id !== action.payload);
+      localStorage.setItem("todos", JSON.stringify(nextState));
+      return nextState;
     case "todos/finish":
-      return state.map((todo) =>
-        todo.id === action.payload
+      nextState = state.map((todo) => {
+        return todo.id === action.payload
           ? { ...todo, finished: !todo.finished }
-          : todo
-      );
+          : todo;
+      });
+      localStorage.setItem("todos", JSON.stringify(nextState));
+      return nextState;
     case "todos/clear":
-      return [];
+      nextState = [];
+      localStorage.setItem("todos", JSON.stringify(nextState));
+      return nextState;
     case "todos/clearFinished":
-      return state.filter((todo) => !todo.finished);
+      nextState = state.filter((todo) => !todo.finished);
+      localStorage.setItem("todos", JSON.stringify(nextState));
+      return nextState;
     default:
       throw new Error("Unknown action type");
   }
