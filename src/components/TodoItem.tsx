@@ -19,7 +19,7 @@ function TodoItem({
           dispatch({ type: "todos/finish", payload: id });
           console.log(e.target.value);
         }}
-        className="focus:-rotate-[360deg] transition-all duration-500 w-6 h-6 hover:cursor-pointer  accent-main focus:outline-none focus:ring focus:ring-main focus:ring-offset-2"
+        className="active:-rotate-[360deg] transition-all duration-500 w-6 h-6 hover:cursor-pointer  accent-main focus:outline-none focus:ring focus:ring-main focus:ring-offset-2"
       />
       <p className="font-semibold text-stone-700 text-lg overflow-hidden">
         {title}
