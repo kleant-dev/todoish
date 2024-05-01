@@ -30,7 +30,7 @@ function TodoForm() {
           onChange={(e) => setTitle(e.target.value)}
         />
         <button
-          className="hover:bg-[#75aeb5] uppercase active:ring ring-offset-1 px-3 py-2 ml-2 border-2 border-none rounded-md bg-main text-white font-semibold"
+          className="hover:bg-[#75aeb5] uppercase active:ring ring-offset-1 px-3 py-2 ml-2 border-2 border-none rounded-md bg-[#fd7e14] text-white font-semibold"
           type="submit"
         >
           Add
